@@ -9,7 +9,7 @@ I created the python package [CalDAV-Tasks-API](https://github.com/thiswillbeyou
 
 0. Have a Home Assistant instance.
 1. Install [HACS](https://www.hacs.xyz/).
-2. Use HACS to install [pyscript](https://hacs-pyscript.readthedocs.io/en/latest/)
+2. Use HACS to install [pyscript](https://hacs-pyscript.readthedocs.io/).
 3. Have a way to access Home Assistant's files. I use [addon-ssh](https://github.com/hassio-addons/addon-ssh).
 4. *Not sure this is needed:* add to `/root/homeassistant/configuration.yaml`:
 ```yaml
