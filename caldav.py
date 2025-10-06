@@ -7,6 +7,7 @@ def caldav_add(
     url: str,
     username: str,
     password: str,
+    tags: list[str] = ["HAOS"],
     priority: int = 3,
     description: str = "",
     debug: bool = False,
@@ -36,6 +37,14 @@ fields:
         default: ""
         selector:
             text:
+    tags:
+        description: Task tags
+        example: ["tag1", "tag2"]
+        required: false
+        default: "HAOS"
+        selector:
+            text:
+                multiple: true
     list_uid:
         description: Target task list UID
         example: "groceries"
@@ -88,6 +97,7 @@ fields:
             list_uid=list_uid,
             priority=priority,
             description=description,
+            tags=tags,
         ),
         list_uid=list_uid,
     )
