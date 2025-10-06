@@ -121,7 +121,7 @@ fields:
         )
     except Exception as e:
         log.error(f"Error creating TasksAPI instance: '{e}'")
-        raise
+        raise RuntimeError(error_msg) from e
 
     try:
         task_data=task.executor(
@@ -135,7 +135,7 @@ fields:
         )
     except Exception as e:
         log.error(f"Error creating TaskData object: '{e}'")
-        raise
+        raise RuntimeError(error_msg) from e
 
     try:
         status = task.executor(
@@ -144,7 +144,7 @@ fields:
         )
     except Exception as e:
         log.error(f"Error TaskData object to the list: '{e}'")
-        raise
+        raise RuntimeError(error_msg) from e
 
     log.info(f"Created task. Status: '{str(status)}'")
     return status
