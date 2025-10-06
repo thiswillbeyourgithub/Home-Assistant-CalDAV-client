@@ -1,6 +1,6 @@
 from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 
-@service(supports_response="only")
+@service
 def caldav_add(
     summary: str,
     list_uid: str,
@@ -12,7 +12,7 @@ def caldav_add(
     tags: list[str] = ["HAOS"],
     ssl_verify: bool = True,
     debug: bool = False,
-) -> dict:
+) -> str:
     """yaml
 description:
     Create a new CalDAV task.
@@ -142,4 +142,4 @@ fields:
         raise
 
     log.info(f"Created task. Status: '{str(status)}'")
-    return {"status": status}
+    return status
