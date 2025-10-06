@@ -105,7 +105,6 @@ fields:
             description=description,
             tags=tags,
         ),
-        list_uid=list_uid,
     )
     log.info(f"Created task. Status: '{str(status)}'")
     return status
