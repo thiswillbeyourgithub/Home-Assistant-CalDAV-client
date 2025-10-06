@@ -1,3 +1,4 @@
+import time
 from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 
 @service
@@ -104,7 +105,8 @@ fields:
     if "haos" not in [t.lower() for t in tags]:
         tags.append("HAOS")
 
-    log.info(f"Will create task: 'SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'")
+    task_as_str = f"SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'"
+    log.info(f"Will create task: '{task_as_str}'")
 
     # We have to use task.executor otherwise we run into errors because
     # urllib3's calls are blocked because of IO restrictions of HAOS.
@@ -120,7 +122,14 @@ fields:
             target_lists=[],
         )
     except Exception as e:
-        log.error(f"Error creating TasksAPI instance: '{e}'")
+        error_msg = f"Error creating TasksAPI instance: '{e}'\nTask was: '{task_as_str}'"
+        service.call(
+            "persistent_notification",
+            "create",
+            title="CalDAV Task Failed",
+            message=error_msg,
+            notification_id=f"caldav_error_{int(time.time())}",
+        )
         raise RuntimeError(error_msg) from e
 
     try:
@@ -134,7 +143,14 @@ fields:
             x_properties={"CREATOR": "HAOS_CalDAV"},
         )
     except Exception as e:
-        log.error(f"Error creating TaskData object: '{e}'")
+        error_msg = f"Error creating TaskData object: '{e}'\nTask was: '{task_as_str}'"
+        service.call(
+            "persistent_notification",
+            "create",
+            title="CalDAV Task Failed",
+            message=error_msg,
+            notification_id=f"caldav_error_{int(time.time())}",
+        )
         raise RuntimeError(error_msg) from e
 
     try:
@@ -143,7 +159,14 @@ fields:
             task_data
         )
     except Exception as e:
-        log.error(f"Error TaskData object to the list: '{e}'")
+        error_msg = f"Error TaskData object to the list: '{e}'\nTask was: '{task_as_str}'"
+        service.call(
+            "persistent_notification",
+            "create",
+            title="CalDAV Task Failed",
+            message=error_msg,
+            notification_id=f"caldav_error_{int(time.time())}",
+        )
         raise RuntimeError(error_msg) from e
 
     log.info(f"Created task. Status: '{str(status)}'")
