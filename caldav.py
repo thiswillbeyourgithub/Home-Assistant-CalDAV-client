@@ -93,7 +93,6 @@ fields:
         url=url,
         username=username,
         password=password,
-        nextcloud_mode=True,
         ssl_verify=ssl_verify,
         debug=debug,
     )
