@@ -12,7 +12,7 @@ def caldav_add(
     tags: list[str] = ["HAOS"],
     ssl_verify: bool = True,
     debug: bool = False,
-) -> str:
+) -> dict:
     """yaml
 description:
     Create a new CalDAV task.
@@ -139,4 +139,4 @@ fields:
         raise
 
     log.info(f"Created task. Status: '{str(status)}'")
-    return f"Task creation status: {status}"
+    return {"status": status}
