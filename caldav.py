@@ -10,6 +10,7 @@ def caldav_add(
     tags: list[str] = ["HAOS"],
     priority: int = 3,
     description: str = "",
+    ssl_verify: bool = True,
     debug: bool = False,
 ):
     """yaml
@@ -74,6 +75,11 @@ fields:
         default: false
         selector:
             bool:
+    ssl_verify:
+        description: Crash for SSL errors
+        default: true
+        selector:
+            bool:
     """
     log.info(f"CaldavTasksAPI: will create task '{summary}' in list '{list_uid}'")
     assert url, "caldav url not specified"
@@ -88,6 +94,7 @@ fields:
         username=username,
         password=password,
         nextcloud_mode=True,
+        ssl_verify=ssl_verify,
         debug=debug,
     )
     status = task.executor(
