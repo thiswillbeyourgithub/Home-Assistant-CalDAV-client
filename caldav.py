@@ -86,18 +86,22 @@ fields:
 
     # We have to use task.executor otherwise we run into errors because
     # urllib3's calls are blocked because of IO restrictions of HAOS.
-    api = task.executor(
-        TasksAPI,
-        url=url,
-        username=username,
-        password=password,
-        ssl_verify=ssl_verify,
-        debug=debug,
-        read_only=False,
-        target_lists=[],
-    )
-    status = task.executor(
-        api.add_task,
+    try:
+        api = task.executor(
+            TasksAPI,
+            url=url,
+            username=username,
+            password=password,
+            ssl_verify=ssl_verify,
+            debug=debug,
+            read_only=False,
+            target_lists=[],
+        )
+    except Exception as e:
+        log.error(f"Error creating TasksAPI instance: '{e}'")
+        raise
+
+    try:
         task_data=TaskData(
             summary=summary,
             list_uid=list_uid,
@@ -105,7 +109,19 @@ fields:
             description=description,
             tags=tags,
             x_properties={"CREATOR": "HAOS_CalDAV"},
-        ),
-    )
+        )
+    except Exception as e:
+        log.error(f"Error creating TaskData object: '{e}'")
+        raise
+
+    try:
+        status = task.executor(
+            api.add_task,
+            task_data
+        )
+    except Exception as e:
+        log.error(f"Error TaskData object to the list: '{e}'")
+        raise
+
     log.info(f"Created task. Status: '{str(status)}'")
     return status
