@@ -28,7 +28,7 @@ fields:
             text:
     description:
         description: Task description
-        example: "Important before the wedding"
+        example: "Must do before the wedding"
         required: false
         default: ""
         selector:
@@ -43,14 +43,14 @@ fields:
                 min: 0
                 max: 10
     list_uid:
-        description: Target task list UID
+        description: UID of the list to add the new task to.
         example: "groceries"
         required: true
         default: "perso"
         selector:
             text:
     tags:
-        description: Task tags. 'HAOS' will always be added automatically.
+        description: Task tags. 'HAOS' will be automatically added.
         example: ["tag1", "tag2"]
         required: false
         default:
@@ -59,7 +59,7 @@ fields:
             text:
                 multiple: true
     url:
-        description: CalDAV server URL
+        description: CalDAV server URL. For nextcloud, ends with "/remote.php/dav"
         example: "https://nextcloud.example.com/remote.php/dav"
         required: true
         selector:
