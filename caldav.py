@@ -20,7 +20,7 @@ def caldav_add(
     username: str,
     password: str = "",
     description: str = "",
-    priority: int = 3,
+    priority: int = 7,
     tags: list[str] = ["HAOS"],
     ssl_verify: bool = False,
     debug: bool = False,
@@ -48,7 +48,7 @@ fields:
         description: Task priority on a 0 to 10 scale
         example: 5
         required: false
-        default: 3
+        default: 7
         selector:
             number:
                 min: 0
