@@ -87,11 +87,16 @@ fields:
         selector:
             bool:
     """
-    assert summary.strip(), "caldav: missing argument 'summary'"
-    assert list_uid.strip(), "caldav: missing argument 'list_uid'"
-    assert url.strip(), "caldav: missing argument 'url'"
-    assert password.strip(), "caldav: missing argument 'password'"
-    assert 0 <= priority <= 10, "caldav: invalid argument 'priority'"
+    if not summary.strip()
+        raise ValueError("caldav: missing argument 'summary'")
+    if not list_uid.strip()
+        raise ValueError("caldav: missing argument 'list_uid'")
+    if not url.strip()
+        raise ValueError("caldav: missing argument 'url'")
+    if not password.strip()
+        raise ValueError("caldav: missing argument 'password'")
+    if not 0 <= priority <= 10
+        raise ValueError("caldav: invalid argument 'priority'")
     if tags:
         tags = [str(t) for t in tags]  # cast as str
 
