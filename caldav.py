@@ -3,15 +3,15 @@ from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 @service
 def caldav_add(
     summary: str,
+    description: str,
+    priority: int,
     list_uid: str,
+    tags: list[str],
     url: str,
     username: str,
     password: str,
-    tags: list[str] = ["HAOS"],
-    priority: int = 3,
-    description: str = "",
-    ssl_verify: bool = True,
-    debug: bool = False,
+    ssl_verify: bool,
+    debug: bool,
 ):
     """yaml
 description: Create a new CalDAV task. More info: https://github.com/thiswillbeyourgithub/haos_caldav_service
@@ -42,7 +42,7 @@ fields:
         description: Task tags
         example: ["tag1", "tag2"]
         required: false
-        default: "HAOS"
+        default: ["HAOS"]
         selector:
             text:
                 multiple: true
