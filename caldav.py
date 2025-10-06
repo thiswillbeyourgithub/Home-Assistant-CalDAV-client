@@ -1,7 +1,14 @@
 from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 
 @service
-def caldav_add(summary, url, username, password, list_uid, debug=False):
+def caldav_add(
+    summary: str,
+    list_uid: str,
+    url: str,
+    username: str,
+    password: str,
+    debug: bool = False,
+):
     """yaml
 description: Create a new CalDAV task
 fields:
@@ -9,6 +16,13 @@ fields:
         description: Task summary/title
         example: "Buy groceries"
         required: true
+        selector:
+            text:
+    list_uid:
+        description: Target task list UID
+        example: "groceries"
+        required: true
+        default: "perso"
         selector:
             text:
     url:
@@ -25,12 +39,6 @@ fields:
             text:
     password:
         description: CalDAV password
-        required: true
-        selector:
-            text:
-    list_uid:
-        description: Target task list UID
-        example: "perso"
         required: true
         selector:
             text:
