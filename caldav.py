@@ -14,7 +14,7 @@ def caldav_add(
     debug: bool = False,
 ):
     """yaml
-description: Create a new CalDAV task
+description: Create a new CalDAV task.
 fields:
     summary:
         description: Task summary/title
