@@ -49,7 +49,8 @@ fields:
         description: Task tags
         example: ["tag1", "tag2"]
         required: false
-        default: ["HAOS"]
+        default:
+            - "HAOS"
         selector:
             text:
                 multiple: true
