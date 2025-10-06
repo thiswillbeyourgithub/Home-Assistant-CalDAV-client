@@ -93,6 +93,8 @@ fields:
         password=password,
         ssl_verify=ssl_verify,
         debug=debug,
+        read_only=False,
+        target_lists=[],
     )
     status = task.executor(
         api.add_task,
