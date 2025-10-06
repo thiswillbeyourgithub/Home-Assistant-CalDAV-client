@@ -18,7 +18,7 @@ pyscript:
   hass_is_global: true
 ```
 5. Create the folder `/config/pyscript`
-6. Inside that `pyscript` folder, add the `requirements.txt` file (this will install my package [CalDAV-Tasks-API](https://github.com/thiswillbeyourgithub/Caldav-Tasks-API)). Same for `caldav.py`.
+6. Inside that `pyscript` folder, add the `requirements.txt` file (this will install my package [CalDAV-Tasks-API](https://github.com/thiswillbeyourgithub/Caldav-Tasks-API)). Same for `caldav.py`. You can add a `caldav_password.secret` text file containing your password to avoid hardcoding it in the Web UI.
 6. Restart Home Assistant (might not be needed but just to be safe)
 
 To test it's working fine:
