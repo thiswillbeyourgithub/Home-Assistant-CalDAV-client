@@ -87,15 +87,15 @@ fields:
         selector:
             bool:
     """
-    if not summary.strip()
+    if not summary.strip():
         raise ValueError("caldav: missing argument 'summary'")
-    if not list_uid.strip()
+    if not list_uid.strip():
         raise ValueError("caldav: missing argument 'list_uid'")
-    if not url.strip()
+    if not url.strip():
         raise ValueError("caldav: missing argument 'url'")
-    if not password.strip()
+    if not password.strip():
         raise ValueError("caldav: missing argument 'password'")
-    if not 0 <= priority <= 10
+    if not 0 <= priority <= 10:
         raise ValueError("caldav: invalid argument 'priority'")
     if tags:
         tags = [str(t) for t in tags]  # cast as str
