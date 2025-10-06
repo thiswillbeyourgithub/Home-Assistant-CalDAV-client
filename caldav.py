@@ -105,7 +105,10 @@ fields:
     if "haos" not in [t.lower() for t in tags]:
         tags.append("HAOS")
 
-    task_as_str = f"SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'"
+    if description:
+        task_as_str = f"SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'"
+    else:
+        task_as_str = f"SUM={summary}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'"
     log.info(f"Will create task: '{task_as_str}'")
 
     # We have to use task.executor otherwise we run into errors because
