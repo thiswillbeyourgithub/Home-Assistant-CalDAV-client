@@ -45,7 +45,7 @@ fields:
         selector:
             text:
     priority:
-        description: Task priority on a 0 to 10 scale
+        description: Task priority on a 0 to 10 scale. Lower is urgent.
         example: 5
         required: false
         default: 7
