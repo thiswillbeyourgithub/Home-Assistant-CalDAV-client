@@ -49,7 +49,7 @@ fields:
         selector:
             text:
     tags:
-        description: Task tags. Default to 'HAOS'.
+        description: Task tags. 'HAOS' will always be added automatically.
         example: ["tag1", "tag2"]
         required: false
         default:
@@ -92,6 +92,10 @@ fields:
     assert 0 <= priority <= 10, "caldav: invalid argument 'priority'"
     if tags:
         tags = [str(t) for t in tags]  # cast as str
+
+    # make sure we have a haos tag
+    if "haos" not in [t.lower() for t in tags]:
+        tags.append("HAOS")
 
     log.info(f"Will create task: 'SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'")
 
