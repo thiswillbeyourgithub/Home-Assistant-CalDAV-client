@@ -104,6 +104,7 @@ fields:
             priority=priority,
             description=description,
             tags=tags,
+            x_properties={"CREATOR": "HAOS_CalDAV"},
         ),
     )
     log.info(f"Created task. Status: '{str(status)}'")
