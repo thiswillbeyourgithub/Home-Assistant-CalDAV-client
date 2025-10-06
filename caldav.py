@@ -74,6 +74,8 @@ fields:
         required: true
         selector:
             text:
+                type:
+                    password
     ssl_verify:
         description: Crash for SSL errors
         default: true
