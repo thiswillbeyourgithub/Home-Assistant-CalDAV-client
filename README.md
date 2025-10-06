@@ -21,7 +21,8 @@ pyscript:
 6. Inside that `pyscript` folder, add the `requirements.txt` file (this will install my package [CalDAV-Tasks-API](https://github.com/thiswillbeyourgithub/Caldav-Tasks-API)). Same for `caldav.py`. You can add a `caldav_password.secret` text file containing your password to avoid hardcoding it in the Web UI.
 6. Restart Home Assistant (might not be needed but just to be safe)
 
-To test it's working fine:
+
+### Testing everything works
 1. Open Home Assistant > `Settings` > `Automations & scenes` > `Create automation` > `Create new automation` > `Add action` > search for `caldav_add`.
 2. Fill in the values then click on the [kebab menu](https://kagi.com/proxy/images?c=_m3km2RjA3G0qleowsZXHZb9NEn0fSsEYIHbKzMDyAFb4nUPIanknmQV_g0rmdCI7DSE22WJPm02DVRa5zIwCPC41lLGjxK0i-EQl5d8ksDTc5kbYP4yXvylNyvKQ4EQWuBHN6v0-pHv23WJZriDSg%3D%3D) then `Run action`.
 3. In the Home Assistant shell, `cat /root/homeassistant/homeassistant.log` to look for any issues.
