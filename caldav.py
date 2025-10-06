@@ -1,9 +1,16 @@
+from pathlib import Path
 import time
 from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 
 # If you don't want anyone to see your caldav password in the Home Assistant UI,
-# you can hardcode it here.
-DEFAULT_PASSWORD = ""
+# you can hardcode it in DEFAULT_PASSWORD_PATH
+
+DEFAULT_PASSWORD_PATH = Path("/config/pyscript/caldav_password.secret")
+password_default = ""
+if DEFAULT_PASSWORD_PATH.exists():
+    password_default = DEFAULT_PASSWORD_PATH.read_text().strip()
+    if password_default:
+        log.info(f"Found and loaded password_default from '{DEFAULT_PASSWORD_PATH}'")
 
 @service
 def caldav_add(
@@ -19,7 +26,7 @@ def caldav_add(
     debug: bool = False,
 ) -> str:
     """yaml
-description:
+description: >
     Create a new CalDAV task.
     Documentation https://github.com/thiswillbeyourgithub/Home-Assistant-CalDAV-client
 
@@ -99,10 +106,10 @@ fields:
     if not url.strip():
         raise ValueError("caldav: missing argument 'url'")
     if not password.strip():
-        if not DEFAULT_PASSWORD.strip():
-            raise ValueError("caldav: missing argument 'password' but DEFAULT_PASSWORD not provided either.")
+        if not password_default.strip():
+            raise ValueError("caldav: missing argument 'password' but no default password provided either.")
         else:
-            password = DEFAULT_PASSWORD
+            password = password_default
     if not 0 <= priority <= 10:
         raise ValueError("caldav: invalid argument 'priority'")
     if tags:
