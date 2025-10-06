@@ -103,7 +103,7 @@ fields:
             url=url,
             username=username,
             password=password,
-            ssl_verify=ssl_verify,
+            ssl_verify_cert=ssl_verify,
             debug=debug,
             read_only=False,
             target_lists=[],
