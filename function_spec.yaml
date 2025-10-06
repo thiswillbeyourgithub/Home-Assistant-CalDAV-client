@@ -1,0 +1,38 @@
+- spec:
+    name: create_caldav_task
+    description: Create a new task in CalDAV (Nextcloud Tasks). Use for user requests to remember things, create todos, or add reminders.
+    parameters:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: Task title/summary
+        list_uid:
+          type: string
+          description: List identifier. Among "perso" or "groceries".
+          default: "perso"
+        description:
+          type: string
+          description: Optional detailed task description
+        priority:
+          type: integer
+          description: Priority 0-10, where lower numbers are more urgent. Default is 7 (low priority).
+          minimum: 0
+          maximum: 10
+          default: 7
+        tags:
+          type: array
+          items:
+            type: string
+          description: Optional tags for categorization. 'HAOS' is added automatically.
+      required:
+        - summary
+  function:
+    type: script
+    sequence:
+      - service: pyscript.caldav_add
+        data:
+          summary: "{{ summary }}"
+          url: "YOUR HARDCODED URL"  # hardcode your URL
+          username: "YOUR USERNAME"  # hardcode your username
+

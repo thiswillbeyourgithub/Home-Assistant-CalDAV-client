@@ -27,6 +27,10 @@ pyscript:
 2. Fill in the values then click on the [kebab menu](https://kagi.com/proxy/images?c=_m3km2RjA3G0qleowsZXHZb9NEn0fSsEYIHbKzMDyAFb4nUPIanknmQV_g0rmdCI7DSE22WJPm02DVRa5zIwCPC41lLGjxK0i-EQl5d8ksDTc5kbYP4yXvylNyvKQ4EQWuBHN6v0-pHv23WJZriDSg%3D%3D) then `Run action`.
 3. In the Home Assistant shell, `cat /root/homeassistant/homeassistant.log` to look for any issues.
 
+### Giving access to LLMs
+I'm so far using [Extended OpenAI Conversation](https://github.com/jekalmin/extended_openai_conversation).
+To give access to caldav to your LLM, modify the hardcoded values at the bottom of the file `function_spec.yaml` then paste it in the `Functions` section of the config of `Extended OpenAI Conversation`.
+
 
 ## Notes
 - Feedbacks welcome
