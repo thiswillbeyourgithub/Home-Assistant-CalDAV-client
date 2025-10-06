@@ -11,7 +11,7 @@ def caldav_add(
     description: str = "",
     priority: int = 3,
     tags: list[str] = ["HAOS"],
-    ssl_verify: bool = True,
+    ssl_verify: bool = False,
     debug: bool = False,
 ) -> str:
     """yaml
@@ -78,8 +78,8 @@ fields:
                 type:
                     password
     ssl_verify:
-        description: Crash for SSL errors
-        default: true
+        description: Crash for SSL errors. Can cause issues with the pyscript environment.
+        default: false
         selector:
             bool:
     debug:
