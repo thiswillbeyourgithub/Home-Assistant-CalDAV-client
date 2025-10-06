@@ -81,7 +81,14 @@ fields:
         selector:
             bool:
     """
-    assert list_uid, "caldav list_uid not specified"
+    assert summary.strip(), "caldav: missing argument 'summary'"
+    assert list_uid.strip(), "caldav: missing argument 'list_uid'"
+    assert url.strip(), "caldav: missing argument 'url'"
+    assert password.strip(), "caldav: missing argument 'password'"
+    assert 0 <= priority <= 10, "caldav: invalid argument 'priority'"
+    if tags:
+        tags = [str(t) for t in tags]  # cast as str
+
     log.info(f"Will create task: 'SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'")
 
     # We have to use task.executor otherwise we run into errors because
