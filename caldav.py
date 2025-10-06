@@ -81,8 +81,8 @@ fields:
         selector:
             bool:
     """
-    log.info(f"CaldavTasksAPI: will create task '{summary}' in list '{list_uid}'")
     assert list_uid, "caldav list_uid not specified"
+    log.info(f"Will create task: 'SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'")
 
     # We have to use task.executor otherwise we run into errors because
     # urllib3's calls are blocked because of IO restrictions of HAOS.
