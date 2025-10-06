@@ -17,6 +17,7 @@ def caldav_add(
 description:
     Create a new CalDAV task.
     More info https://github.com/thiswillbeyourgithub/haos_caldav_service
+    More info [link](https://github.com/thiswillbeyourgithub/haos_caldav_service)
 fields:
     summary:
         description: Task summary/title
