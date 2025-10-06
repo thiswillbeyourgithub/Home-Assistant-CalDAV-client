@@ -49,7 +49,7 @@ fields:
         selector:
             text:
     tags:
-        description: Task tags
+        description: Task tags. Default to 'HAOS'.
         example: ["tag1", "tag2"]
         required: false
         default:
