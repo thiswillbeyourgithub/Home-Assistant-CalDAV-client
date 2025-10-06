@@ -119,7 +119,8 @@ fields:
         raise
 
     try:
-        task_data=TaskData(
+        task_data=task.executor(
+            TaskData,
             summary=summary,
             list_uid=list_uid,
             priority=priority,
