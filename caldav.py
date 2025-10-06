@@ -14,7 +14,9 @@ def caldav_add(
     debug: bool = False,
 ):
     """yaml
-description: Create a new CalDAV task. More info https://github.com/thiswillbeyourgithub/haos_caldav_service
+description:
+    Create a new CalDAV task.
+    More info https://github.com/thiswillbeyourgithub/haos_caldav_service
 fields:
     summary:
         description: Task summary/title
