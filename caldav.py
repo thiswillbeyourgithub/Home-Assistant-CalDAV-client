@@ -22,6 +22,13 @@ fields:
         required: true
         selector:
             text:
+    description:
+        description: Task description
+        example: "Important before the wedding"
+        required: false
+        default: ""
+        selector:
+            text:
     priority:
         description: Task priority on a 0 to 10 scale
         example: 5
@@ -31,11 +38,11 @@ fields:
             number:
                 min: 0
                 max: 10
-    description:
-        description: Task description
-        example: "Important before the wedding"
-        required: false
-        default: ""
+    list_uid:
+        description: Target task list UID
+        example: "groceries"
+        required: true
+        default: "perso"
         selector:
             text:
     tags:
@@ -46,13 +53,6 @@ fields:
         selector:
             text:
                 multiple: true
-    list_uid:
-        description: Target task list UID
-        example: "groceries"
-        required: true
-        default: "perso"
-        selector:
-            text:
     url:
         description: CalDAV server URL
         example: "https://nextcloud.example.com/remote.php/dav"
@@ -70,14 +70,14 @@ fields:
         required: true
         selector:
             text:
-    debug:
-        description: Enable debug logging
-        default: false
-        selector:
-            bool:
     ssl_verify:
         description: Crash for SSL errors
         default: true
+        selector:
+            bool:
+    debug:
+        description: Enable debug logging
+        default: false
         selector:
             bool:
     """
