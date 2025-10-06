@@ -1,13 +1,17 @@
 import time
 from caldav_tasks_api.caldav_tasks_api import TasksAPI, TaskData
 
+# If you don't want anyone to see your caldav password in the Home Assistant UI,
+# you can hardcode it here.
+DEFAULT_PASSWORD = ""
+
 @service
 def caldav_add(
     summary: str,
     list_uid: str,
     url: str,
     username: str,
-    password: str,
+    password: str = "",
     description: str = "",
     priority: int = 3,
     tags: list[str] = ["HAOS"],
@@ -71,8 +75,8 @@ fields:
         selector:
             text:
     password:
-        description: CalDAV password
-        required: true
+        description: CalDAV password. If unspecified, we assume you hardcoded it in the script.
+        required: false
         selector:
             text:
                 type:
@@ -95,7 +99,10 @@ fields:
     if not url.strip():
         raise ValueError("caldav: missing argument 'url'")
     if not password.strip():
-        raise ValueError("caldav: missing argument 'password'")
+        if not DEFAULT_PASSWORD.strip():
+            raise ValueError("caldav: missing argument 'password' but DEFAULT_PASSWORD not provided either.")
+        else:
+            password = DEFAULT_PASSWORD
     if not 0 <= priority <= 10:
         raise ValueError("caldav: invalid argument 'priority'")
     if tags:
