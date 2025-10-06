@@ -82,11 +82,7 @@ fields:
             bool:
     """
     log.info(f"CaldavTasksAPI: will create task '{summary}' in list '{list_uid}'")
-    assert url, "caldav url not specified"
-    assert password, "caldav password not specified"
-    assert username, "caldav username not specified"
     assert list_uid, "caldav list_uid not specified"
-    assert priority, "caldav priority not specified"
 
     api = task.executor(
         TasksAPI,
