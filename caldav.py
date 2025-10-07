@@ -21,7 +21,7 @@ def caldav_add(
     password: str = "",
     description: str = "",
     priority: int = 7,
-    tags: list[str] = ["HAOS"],
+    tags: list[str] = None,
     ssl_verify: bool = False,
     debug: bool = False,
 ) -> str:
@@ -61,11 +61,9 @@ fields:
         selector:
             text:
     tags:
-        description: Task tags. 'HAOS' will be automatically added.
+        description: Task tags.
         example: ["tag1", "tag2"]
         required: false
-        default:
-            - "HAOS"
         selector:
             text:
                 multiple: true
@@ -112,12 +110,12 @@ fields:
             password = password_default
     if not 0 <= priority <= 10:
         raise ValueError("caldav: invalid argument 'priority'")
-    if tags:
+    if isinstance(tags, str):
+        tags = [tags]
+    elif isinstance(tags, list):
         tags = [str(t) for t in tags]  # cast as str
-
-    # make sure we have a haos tag
-    if "haos" not in [t.lower() for t in tags]:
-        tags.append("HAOS")
+    elif tags is None:
+        tags = []
 
     if description:
         task_as_str = f"SUM={summary}' DESC='{description}' LIST_UID='{list_uid}' PRIO='{priority}' USER='{username}'"
