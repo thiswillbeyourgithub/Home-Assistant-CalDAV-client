@@ -149,6 +149,21 @@ fields:
         raise RuntimeError(error_msg) from e
 
     try:
+        task.executor(
+            api.load_remote_data
+        )
+    except Exception as e:
+        error_msg = f"Error when loading remote data: '{e}'\nTask was: '{task_as_str}'"
+        service.call(
+            "persistent_notification",
+            "create",
+            title="CalDAV Remote Data Loading Failed",
+            message=error_msg,
+            notification_id=f"caldav_error_{int(time.time())}",
+        )
+        raise RuntimeError(error_msg) from e
+
+    try:
         task_data=task.executor(
             TaskData,
             summary=summary,
