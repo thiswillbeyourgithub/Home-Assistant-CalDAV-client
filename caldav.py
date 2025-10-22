@@ -134,7 +134,7 @@ fields:
             ssl_verify_cert=ssl_verify,
             debug=debug,
             read_only=False,
-            target_lists=[],
+            # target_lists=[],
         )
     except Exception as e:
         error_msg = f"Error creating TasksAPI instance: '{e}'\nTask was: '{task_as_str}'"
