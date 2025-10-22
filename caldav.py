@@ -134,6 +134,7 @@ fields:
             ssl_verify_cert=ssl_verify,
             debug=debug,
             read_only=False,
+            include_completed=False,
             # target_lists=[],
         )
     except Exception as e:
